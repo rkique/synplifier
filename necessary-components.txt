@@ -1,20 +1,19 @@
 GENERAL TESTING SUPPLIES
--nucleic acid extraction: swabs, saline mix
--fixed-amount pipette
--cell culture (agar powder)
--freezedried e.coli 
--lb media
--dNTPs
--NEBuffer 
--(plasmid) RT 
--(plasmid) Bst
--(plasmid) Cas12
--lateral flow
--reporter DNA for DETECTR
+-nucleic acid extraction: swabs, saline mix           S, SM
+-fixed-amount pipette           P
+-cell culture (lb agar powder) LB
+-freezedried e.coli            E
+-dNTPs                        T
+-NEBuffer                    B
+-(plasmid) RT              RT
+-(plasmid) Bst            Bst
+-(plasmid) Cas12          Cas
+-lateral flow strips      LF
+-reporter DNA for DETECTR   R
 
 VIRUS SPECIFIC
-- virus-specific LAMP primers
-- dna oligo for detection
+- virus-specific LAMP primers     V
+- dna oligo for detection         Casx
 
 ESSENTIAL PROTOCOLS
 -create a sterile environment
