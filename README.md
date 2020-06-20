@@ -2,6 +2,7 @@
 Defhacks 2020 submission. Convert synthetic biology protocols into AR walkthroughs.
 
 Project outline:
+
 Sythetic biology allows the production of testing reagents from bacterial plasmids. However, its potential to increase viral testing accessibility is hampered by a lack of trained healthcare professionals and biologists.
 
 We will create or automate a conversion process from standard protocol formats to AR or other greatly simplified instruction formats.
