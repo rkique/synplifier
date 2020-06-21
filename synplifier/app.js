@@ -3,7 +3,7 @@ var States = [];
 var q = 0;
 var w = 600;
 var h = 600;
-var BKG_COLOR = 100;
+var BKG_COLOR = 70;
 var TEXT_SIZE = 14;
 var TEXT_COLOR = 0;
 var TEXT_OFFSET = 30;
@@ -64,20 +64,20 @@ function draw() {
                 if(t == "dry")
                 {
                     reagents[i].hue = Math.random()*(1/3)
-                    reagents[i].x = 40+w/4
-                    reagents[i].y = (i/reagents.length)*h*1.4 + h/2 - 60
+                    reagents[i].x = 100
+                    reagents[i].y = 30+i*70 + h/3
                 }
                 if(t == "wet")
                 {
                     reagents[i].hue =  1/3+Math.random()*(1/3)
-                    reagents[i].x = 40+2*w/4
-                    reagents[i].y = (i/reagents.length)*h*1.4 - 40
+                    reagents[i].x = 300
+                    reagents[i].y =  30+i*70 - 40
                 }
                 if(t == "tool")
                 {
                     reagents[i].hue = 2/3+Math.random()*(1/3)
-                    reagents[i].x = 40+3*w/4
-                    reagents[i].y = (i/reagents.length)*h*1.4- h/2 - 20
+                    reagents[i].x = 500
+                    reagents[i].y =  30+i*70 - h/2
                 }
                 }
             }
@@ -108,6 +108,13 @@ function draw() {
         fill(TEXT_COLOR)
         strokeWeight(0);
         text(q+1+"/"+(States.length-1)+"frames ", 40, 20);
+        if (States[q] instanceof Text && States[q].seconds > 0) {
+            console.log("timer")
+            if (frameCount % 60 == 0 && States[q].seconds-- > 0) {
+                States[q].seconds--;
+            }
+            text(new Date(States[q].seconds * 1000).toISOString().substr(11, 8), w - 60, 50);
+        }
         fill(STROKE_COLOR)
         strokeWeight(10);
         drawState(States[q])};
@@ -136,8 +143,9 @@ function Arrow(x1, y1, x2, y2, amount) {
     this.amount = amount;
 }
 
-function Text(text) {
+function Text(text, seconds) {
     this.text = text;
+    this.seconds = seconds;
 }
 
 //growth
@@ -185,6 +193,26 @@ function growBacteria(mediaPowder, lyobacteria, water, incubate_block, incubate_
     return BacterialCulture;
 }
 
+function induceBacteria(BacterialCulture, inducer, heat_block, induction_time) {
+        BacterialCulture = transfer(inducer, BacterialCulture, parseInt(BacterialCulture.qty) / 10);
+        return incubate(BacterialCulture, heat_block, 4 * 60 * 60)
+
+    }
+
+    //lyophilizaton for preservation
+    function lyophilizePreserve(BacterialCulture, lyophilizer, lyoprotectant) {
+        BacterialCulture = transfer(lyoprotectant, BacterialCulture, "100ml");
+        return lyophilize(BacterialCulture, lyophilizer);
+    }
+
+    //lyophilization on strong defaults, meant for cellular collapse and extraction
+    function lyophilize(BacterialCulture, lyophilizer, s = 30 * 60 * 60) {
+        product = incubate(BacterialCulture, lyophilizer, s)
+        product.type = "dry";
+        return product;
+    }
+
+
 function heatShock(BacterialCulture, ice_block, hot_block, intervals) {
     BacterialCulture = transfer(BacterialCulture, ice_block, "500ml");
     for (i = 0; i < intervals; i++) {
@@ -207,7 +235,7 @@ function transfer(constituent, recipient, amount) {
 
 //Sets a timer for a number of seconds.
 function startTimer(seconds) {
-    States.push(new Text("starting timer for " + seconds + " seconds"));
+States.push(new Text("Please wait for the time specified. This is part of the protocol.", seconds));
 }
 
 //Conversion function to ul (a thousandth of a milliliter)
