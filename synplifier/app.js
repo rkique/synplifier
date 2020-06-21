@@ -9,7 +9,7 @@ var TEXT_COLOR = 0;
 var TEXT_OFFSET = 30;
 var STROKE_WEIGHT = 10;
 var STROKE_COLOR = 0;
-var Canvas_X_Offset = 600;
+var Canvas_X_Offset = 630;
 function reagent(qty="0g",name,type="dry") {
     this.x = 0;
     this.y = 0;
@@ -71,19 +71,19 @@ function draw() {
             //setup reagents
             if(dry[0].hue == 0){
                 for(i = 0; i< dry.length; i++){
-                        dry[i].hue = Math.random()*(1/3)
+                        dry[i].hue = (i/dry.length)*(1/3)
                         dry[i].x = 100
                         dry[i].y = ((i+1)/(dry.length+2))*w
                     }
                 for(i = 0; i< wet.length; i++)
                     {
-                        wet[i].hue =  1/3+Math.random()*(1/3)
+                        wet[i].hue =  1/3+(i/wet.length)*(1/3)
                         wet[i].x = 300
                         wet[i].y = ((i+1)/(wet.length+2))*w
                     }
                 for(i = 0; i< tool.length; i++){
                     {
-                        tool[i].hue = 2/3+Math.random()*(1/3)
+                        tool[i].hue = 2/3+(i/tool.length)*(1/3)
                         tool[i].x = 500
                         tool[i].y = ((i+1)/(tool.length+2))*w
                     }
@@ -133,13 +133,13 @@ function draw() {
         console.log("drawing States");
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(q+1+"/"+(States.length-1)+"frames ", 40, 20);
+        text(q+1+"/"+(States.length-1)+" frames ", 45, 10);
         if (States[q] instanceof Text && States[q].seconds > 0) {
             console.log("timer")
             if (frameCount % 60 == 0 && States[q].seconds-- > 0) {
                 States[q].seconds--;
             }
-            text(new Date(States[q].seconds * 1000).toISOString().substr(11, 8), w - 60, 50);
+            text(new Date(States[q].seconds * 1000).toISOString().substr(11, 8), w - 60, 10);
         }
         fill(STROKE_COLOR)
         strokeWeight(10);
@@ -292,7 +292,6 @@ function incubate(culture, incubate_block, s) {
     return culture;
 }
 
-//TODO: link to ECHOAR
 //Draws an arrow 
 function drawState(Obj) {
     if (Obj instanceof Arrow) {
@@ -310,7 +309,7 @@ function drawState(Obj) {
     } else if (Obj instanceof Text) {
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(Obj.text, w/2, 50);
+        text(Obj.text, w/2, 10);
     } else {    
         console.log("objectbroken")
     }
