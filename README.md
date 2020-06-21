@@ -1,5 +1,5 @@
 # A Synthetic Biology Procedures Simplifier
-Defhacks 2020 submission. Convert synthetic biology protocols into AR walkthroughs.
+Defhacks 2020 submission. Breaks down synthetic biology protocols into elementary steps.
 
 Project outline:
 
