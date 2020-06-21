@@ -39,4 +39,4 @@ Final = transfer(RTLAMP, RNPcomplex, "2ul");
 Final = transfer(buffer,Final, "80ul");
 Final = incubate(Final, C37, 10*60);
 result = transfer(FlowStrips, Final, "0ml");
-}
+} 
