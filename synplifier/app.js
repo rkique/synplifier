@@ -1,15 +1,16 @@
 var reagents = []
 var States = [];
 var q = 0;
-var w = 1200;
-var h = 1200;
-var BKG_COLOR = 70;
-var TEXT_SIZE = 20;
+var w = 600;
+var h = 600;
+var BKG_COLOR = 100;
+var TEXT_SIZE = 14;
 var TEXT_COLOR = 0;
+var TEXT_OFFSET = 30;
 var STROKE_WEIGHT = 10;
 var STROKE_COLOR = 0;
-
-function reagent(qty,name,type) {
+var Canvas_X_Offset = 600;
+function reagent(qty="0g",name,type="dry") {
     this.x = 0;
     this.y = 0;
     this.qty = qty;
@@ -18,11 +19,11 @@ function reagent(qty,name,type) {
     this.hue = 0;
     reagents.push(this);
 }
-
-LBPowder = new reagent("500g", "LBPowder", "dry")
-SOCPowder = new reagent("500g", "SOCPowder", "dry")
+/*
+LBPowder = new reagent("500g", "LB Powder", "dry")
+SOCPowder = new reagent("500g", "SOC Powder", "dry")
 LyoBL21 = new reagent("700g", "Lyophilized BL21", "dry")
-RTPowder = new reagent("200g", "RTPowder", "dry")
+RTPowder = new reagent("200g", "RT Powder", "dry")
 water1 = new reagent("500ml", "500ml water","wet")
 water2 = new reagent("500ml", "500ml water","wet")
 water3 = new reagent("100ml", "100ml water","wet")
@@ -30,81 +31,103 @@ C37block = new reagent("0ml", "37C Heat Block", "tool")
 C4block = new reagent("0ml", "4C Heat Block", "tool")
 C42block = new reagent("0ml", "42C Heat Block", "tool")
 microtube1 = new reagent("0ml", "microtube", "tool")
-plate1 = new reagent("0ml", "plate", "tool");
-
-for(i = 0; i< reagents.length; i++)
-{
-    t = reagents[i].type;
-    if(t == "dry")
-    {
-        reagents[i].hue = Math.random()*(1/3)
-        reagents[i].x = 40+w/4
-        reagents[i].y = (i/reagents.length)*h*1.4 + h/2
-    }
-    if(t == "wet")
-    {
-        reagents[i].hue =  1/3+Math.random()*(1/3)
-        reagents[i].x = 40+2*w/4
-        reagents[i].y = (i/reagents.length)*h*1.4
-    }
-    if(t == "tool")
-    {
-        reagents[i].hue = 2/3+Math.random()*(1/3)
-        reagents[i].x = 40+3*w/4
-        reagents[i].y = (i/reagents.length)*h*1.4- h/2
-    }
-}
+plate1 = new reagent("0ml", "plate", "tool");*/
 
 
+/*
+States.push(new Text("START"));
+
+LBPlate = growBacteria(LBPowder, LyoBL21, water1, C37block, 3 * 60 * 60);
+SOCPlate = growBacteria(SOCPowder, LyoBL21, water2, C37block, 5 * 60 * 60);
+RT = transfer(RTPowder, water3, "10g")
+RTplate = transform(LBPlate, RT, microtube1, plate1, C4block, C42block, C37block);
+
+States.push(new Text("END"));*/
 
 //drawing
-//TODO: implement TYPE
-
 function setup() {
-    //initArray = [LBPowder, SOCPowder, LyoBL21, RTPowder, water1, water2, water3, C37block, C4block, C42block, microtube1, plate1]
-    createCanvas(w, h);
+    cnv = createCanvas(w, h);
+    cnv.position(Canvas_X_Offset, 0);
     angleMode(RADIANS)
     rectMode(CENTER)
     textSize(TEXT_SIZE);
     textAlign(CENTER, CENTER);
     colorMode(HSB, 100)
-
-    States.push(new Text("START"));
-
-    LBPlate = growBacteria(LBPowder, LyoBL21, water1, C37block, 3 * 60 * 60);
-    SOCPlate = growBacteria(SOCPowder, LyoBL21, water2, C37block, 5 * 60 * 60);
-    RT = transfer(RTPowder, water3, "10g")
-    RTplate = transform(LBPlate, RT, microtube1, plate1, C4block, C42block, C37block);
-
-    States.push(new Text("END"));
-
-    //colors
 }
-
 function draw() {
-    background(BKG_COLOR);
-    for (i = 0; i < reagents.length; i++) {
-        fill(color(reagents[i].hue*100, 100, 100));
-        noStroke()
-        tx = reagents[i].x
-        ty = reagents[i].y
-        if(reagents[i].type == "wet"){circle(tx, ty, 100)};
-        if(reagents[i].type == "dry"){rect(tx, ty, 120,70)};
-        if(reagents[i].type == "tool"){triangle(tx-60, ty-40, tx,ty+40, tx+60, ty-40)}
+    if(reagents.length >0){
+            //setup reagents
+            if(reagents[0].hue == 0){
+            for(i = 0; i< reagents.length; i++)
+            {
+                t = reagents[i].type;
+                if(t == "dry")
+                {
+                    reagents[i].hue = Math.random()*(1/3)
+                    reagents[i].x = 40+w/4
+                    reagents[i].y = (i/reagents.length)*h*1.4 + h/2 - 60
+                }
+                if(t == "wet")
+                {
+                    reagents[i].hue =  1/3+Math.random()*(1/3)
+                    reagents[i].x = 40+2*w/4
+                    reagents[i].y = (i/reagents.length)*h*1.4 - 40
+                }
+                if(t == "tool")
+                {
+                    reagents[i].hue = 2/3+Math.random()*(1/3)
+                    reagents[i].x = 40+3*w/4
+                    reagents[i].y = (i/reagents.length)*h*1.4- h/2 - 20
+                }
+                }
+            }
+        background(BKG_COLOR);
+        for (i = 0; i < reagents.length; i++) {
+            fill(color(reagents[i].hue*100, 100, 100));
+            noStroke()
+            tx = reagents[i].x
+            ty = reagents[i].y
+            if(reagents[i].type == "wet"){circle(tx, ty, 50)};
+            if(reagents[i].type == "dry"){rect(tx, ty, 60,40)};
+            if(reagents[i].type == "tool"){triangle(tx-40, ty-20, tx,ty+20, tx+40, ty-20)}
+            fill(TEXT_COLOR)
+            strokeWeight(0);
+            text(reagents[i].name, tx, ty+TEXT_OFFSET);
+        }
+        strokeWeight(STROKE_WEIGHT);
+        stroke(STROKE_COLOR);
+    }
+
+    if(States === undefined || States.length == 0)
+    {
+        console.log("states undefined")
+        return;
+    }else{
+    if(q < States.length){
+        console.log("drawing States");
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(reagents[i].name, tx, ty+60)
-    }
-    strokeWeight(STROKE_WEIGHT);
-    stroke(STROKE_COLOR);
-    if(q < States.length){drawState(States[q])};
-
+        text(q+1+"/"+(States.length-1)+"frames ", 40, 20);
+        fill(STROKE_COLOR)
+        strokeWeight(10);
+        drawState(States[q])};
+    } 
 }
 
 function mouseClicked() {
+    if(q< States.length && mouseX > 0 && mouseY > 0)
+    {
     q = q + 1;
+    }
 }
 
+function keyPressed() {
+    if (keyCode === LEFT_ARROW && q > 0) {
+      q = q-1;
+    } else if (keyCode === RIGHT_ARROW && q < States.length) {
+      q = q+1;
+    }
+  }
 function Arrow(x1, y1, x2, y2, amount) {
     this.x1 = x1;
     this.y1 = y1;
@@ -198,7 +221,7 @@ function ul(amount) {
     } else if (amount.includes("ml")) {
         amount = parseInt(amount) * 1000;
     } else {
-        alert("Invalid units!")
+        console.log("Invalid units!")
     }
     return amount;
     
@@ -235,6 +258,6 @@ function drawState(Obj) {
         strokeWeight(0);
         text(Obj.text, w/2, 50);
     } else {    
-        alert("objectbroken")
+        console.log("objectbroken")
     }
 }
