@@ -1,37 +1,58 @@
 var reagents = []
-
-function reagent(x, y, qty) {
-    this.x = x;
-    this.y = y;
-    this.qty = qty;
-    reagents.push(this);
-}
-
-LBPowder = new reagent(100, 100, "500g")
-SOCPowder = new reagent(700, 400, "500g")
-LyoBL21 = new reagent(300, 300, "700g")
-RTPowder = new reagent(400, 500, "200g")
-water1 = new reagent(900, 200, "500ml")
-water2 = new reagent(700, 700, "500ml")
-water3 = new reagent(500, 900, "100ml")
-
-C37block = new reagent(400, 900, "0ml")
-C4block = new reagent(1000, 1000, "0ml")
-C42block = new reagent(400, 1100, "0ml");
-microtube1 = new reagent(0, 100, "0ml");
-plate1 = new reagent(600, 200, "0ml");
-
-
-
 var States = [];
 var q = 0;
 var w = 1200;
 var h = 1200;
-var BKG_COLOR = 200;
-var TEXT_SIZE = 40;
-var TEXT_COLOR = 100;
+var BKG_COLOR = 70;
+var TEXT_SIZE = 20;
+var TEXT_COLOR = 0;
 var STROKE_WEIGHT = 10;
-var STROKE_COLOR = 0
+var STROKE_COLOR = 0;
+
+function reagent(qty,name,type) {
+    this.x = 0;
+    this.y = 0;
+    this.qty = qty;
+    this.name = name;
+    this.type = type;
+    reagents.push(this);
+}
+
+LBPowder = new reagent("500g", "LBPowder", "dry")
+SOCPowder = new reagent("500g", "SOCPowder", "dry")
+LyoBL21 = new reagent("700g", "Lyophilized BL21", "dry")
+RTPowder = new reagent("200g", "RTPowder", "dry")
+water1 = new reagent("500ml", "500ml water","wet")
+water2 = new reagent("500ml", "500ml water","wet")
+water3 = new reagent("100ml", "100ml water","wet")
+C37block = new reagent("0ml", "37C Heat Block", "tool")
+C4block = new reagent("0ml", "4C Heat Block", "tool")
+C42block = new reagent("0ml", "42C Heat Block", "tool")
+microtube1 = new reagent("0ml", "microtube", "tool")
+plate1 = new reagent("0ml", "plate", "tool");
+
+for(i = 0; i< reagents.length; i++)
+{
+    t = reagents[i].type;
+    if(t == "dry")
+    {
+        reagents[i].x = 40+w/4
+        reagents[i].y = (i/reagents.length)*h*1.4 + h/2
+    }
+    if(t == "wet")
+    {
+        reagents[i].x = 40+2*w/4
+        reagents[i].y = (i/reagents.length)*h*1.4
+    }
+    if(t == "tool")
+    {
+        reagents[i].x = 40+3*w/4
+        reagents[i].y = (i/reagents.length)*h*1.4- h/2
+    }
+}
+
+
+
 //drawing
 //TODO: implement TYPE
 
@@ -39,12 +60,18 @@ function setup() {
     //initArray = [LBPowder, SOCPowder, LyoBL21, RTPowder, water1, water2, water3, C37block, C4block, C42block, microtube1, plate1]
     createCanvas(w, h);
     angleMode(RADIANS)
+    rectMode(CENTER)
     textSize(TEXT_SIZE);
+    textAlign(CENTER, CENTER);
+
+    States.push(new Text("START"));
 
     LBPlate = growBacteria(LBPowder, LyoBL21, water1, C37block, 3 * 60 * 60);
     SOCPlate = growBacteria(SOCPowder, LyoBL21, water2, C37block, 5 * 60 * 60);
     RT = transfer(RTPowder, water3, "10g")
     RTplate = transform(LBPlate, RT, microtube1, plate1, C4block, C42block, C37block);
+
+    States.push(new Text("END"));
 
     //colors
     colorMode(HSB, 100)
@@ -60,11 +87,18 @@ function draw() {
     for (i = 0; i < reagents.length; i++) {
         fill(colors[i])
         noStroke()
-        circle(reagents[i].x, reagents[i].y, 100);
+        tx = reagents[i].x
+        ty = reagents[i].y
+        if(reagents[i].type == "wet"){circle(tx, ty, 100)};
+        if(reagents[i].type == "dry"){rect(tx, ty, 120,70)};
+        if(reagents[i].type == "tool"){triangle(tx-60, ty-40, tx,ty+40, tx+60, ty-40)}
+        fill(TEXT_COLOR)
+        strokeWeight(0);
+        text(reagents[i].name, tx, ty+60)
     }
     strokeWeight(STROKE_WEIGHT);
     stroke(STROKE_COLOR);
-    drawState(States[q]);
+    if(q < States.length){drawState(States[q])};
 
 }
 
@@ -102,6 +136,7 @@ function transform(BacterialPlate, plasmid, microtube, plate, ice_block, hot_blo
     LBmicrotube = transfer(competentLBPlate, microtube, "50ul")
 
     //recovery and adding media
+    
     incubate(LBmicrotube, ice_block, 30 * 60)
     heatShock(LBmicrotube, ice_block, hot_block, 1)
     LBmicrotube = transfer(media, LBmicrotube, "950ul");
@@ -145,8 +180,7 @@ function transfer(constituent, recipient, amount) {
     y2 = recipient.y;
     States.push(new Arrow(x1, y1, x2, y2, amount))
     totalQty = ul(recipient.qty) + ul(amount)
-    product = new reagent(recipient.x, recipient.y, totalQty + "ul");
-    return product;
+    return recipient;
 }
 
 //Sets a timer for a number of seconds.
@@ -195,11 +229,13 @@ function drawState(Obj) {
             triangle(-offset*0.5, offset, offset*0.5, offset, 0, -offset/2);
             pop();
         fill(TEXT_COLOR)
-        text(Obj.amount, (Obj.x1 + Obj.x2) / 2, (Obj.y1 + Obj.y2) / 2)
+        strokeWeight(0);
+        text(Obj.amount, (Obj.x1 + Obj.x2) / 2, (Obj.y1 + Obj.y2) / 2 + 20)
     } else if (Obj instanceof Text) {
         fill(TEXT_COLOR)
-        text(Obj.text, w / 2, h / 2);
-    } else {
+        strokeWeight(0);
+        text(Obj.text, w/2, 50);
+    } else {    
         alert("objectbroken")
     }
 }
