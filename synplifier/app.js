@@ -53,6 +53,7 @@ function setup() {
     textSize(TEXT_SIZE);
     textAlign(CENTER, CENTER);
     colorMode(HSB, 100)
+    textFont('Georgia');
 }
 var dry = [];
 var wet = [];
