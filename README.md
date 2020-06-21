@@ -1,4 +1,4 @@
-# DIYbiologics
+# A Synthetic Biology Procedures Simplifier
 Defhacks 2020 submission. Convert synthetic biology protocols into AR walkthroughs.
 
 Project outline:
