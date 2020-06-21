@@ -43,7 +43,7 @@
         <nav class = "navbar navbar-custom navbar-expand-md fixed-top ">
             <a class = "navbar-branch" href = "index.html"><img src = "images/syn_resized.png" id = "navbar-logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggle"></span>
             </button>
             <div class = "collapse navbar-collapse" id = "navbar-coll">
                 <li>
@@ -57,10 +57,9 @@
                 </li>
             </div>
         </nav>
-
-
-        <textarea  style="position: absolute; top: 0px" id="objects" name="objects" rows="30" cols="30">Enter the objects here</textarea>
-        <textarea  style="position: absolute; top: 0px; left: 300px" id="procedures" name="procedures" rows="30" cols="30"> Enter the procedural steps here. </textarea>
+        <br>
+        <textarea  style="position: absolute; top: 40px; left: 500px" id="objects" name="objects" rows="30" cols="30">Enter the objects here.</textarea>
+        <textarea  style="position: absolute; top: 0px; left: 500px" id="procedures" name="procedures" rows="30" cols="30">Enter the procedural steps here.</textarea>
         
         <button style="position: absolute; bottom: 10px; right:300 px" id= "procbutton" onclick="readprocedures()">submit procedures</button>
         <button style="position: absolute; bottom: 290px; right:300 px" id="objbutton" onclick="readobjects()">submit objects</button>
