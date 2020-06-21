@@ -15,6 +15,7 @@ function reagent(qty,name,type) {
     this.qty = qty;
     this.name = name;
     this.type = type;
+    this.hue = 0;
     reagents.push(this);
 }
 
@@ -36,16 +37,19 @@ for(i = 0; i< reagents.length; i++)
     t = reagents[i].type;
     if(t == "dry")
     {
+        reagents[i].hue = Math.random()*(1/3)
         reagents[i].x = 40+w/4
         reagents[i].y = (i/reagents.length)*h*1.4 + h/2
     }
     if(t == "wet")
     {
+        reagents[i].hue =  1/3+Math.random()*(1/3)
         reagents[i].x = 40+2*w/4
         reagents[i].y = (i/reagents.length)*h*1.4
     }
     if(t == "tool")
     {
+        reagents[i].hue = 2/3+Math.random()*(1/3)
         reagents[i].x = 40+3*w/4
         reagents[i].y = (i/reagents.length)*h*1.4- h/2
     }
@@ -63,6 +67,7 @@ function setup() {
     rectMode(CENTER)
     textSize(TEXT_SIZE);
     textAlign(CENTER, CENTER);
+    colorMode(HSB, 100)
 
     States.push(new Text("START"));
 
@@ -74,18 +79,12 @@ function setup() {
     States.push(new Text("END"));
 
     //colors
-    colorMode(HSB, 100)
-    colors = []
-    for (i = 0; i < reagents.length; i++) {
-        colors[i] = color(random(1, 100), 100, 100);
-    }
-
 }
 
 function draw() {
     background(BKG_COLOR);
     for (i = 0; i < reagents.length; i++) {
-        fill(colors[i])
+        fill(color(reagents[i].hue*100, 100, 100));
         noStroke()
         tx = reagents[i].x
         ty = reagents[i].y
