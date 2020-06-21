@@ -15,10 +15,50 @@
         <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap" rel="stylesheet">        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="icon" type="image/png" href="img/icon.PNG">
-        <link rel="stylesheet" href="stylesheets/index.css">
+        <link rel = "stylesheet" href = "index.css">
+        <style>
+            body {
+                min-height: 75rem;
+                padding-top: 4.5rem;
+            }
+            
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
     </head>
 
     <body>
+        <nav class = "navbar navbar-custom navbar-expand-md fixed-top ">
+            <a class = "navbar-branch" href = "index.html"><img src = "images/syn_resized.png" id = "navbar-logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class = "collapse navbar-collapse" id = "navbar-coll">
+                <li>
+                    <a class = "active nav-link py-0" href = "index.html">Lab</a>
+                </li>
+                <li>
+                    <a class = "nav-link py-0" href = "about.html">About Synplifier</a>
+                </li>
+                <li>
+                    <a class = "nav-link py-0" href = "guide.html">Guide to Commands</a>
+                </li>
+            </div>
+        </nav>
+
+
         <textarea  style="position: absolute; top: 0px" id="objects" name="objects" rows="30" cols="30">Enter the objects here</textarea>
         <textarea  style="position: absolute; top: 0px; left: 300px" id="procedures" name="procedures" rows="30" cols="30"> Enter the procedural steps here. </textarea>
         

@@ -1,0 +1,30 @@
+.navbar-custom {
+    background-color: #000000;
+}
+
+.navbar-custom a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-custom li {
+    list-style-type: none;
+    margin-right: 10px;
+}
+
+.navbar-custom .active {
+    list-style-type: none;
+    text-decoration: underline;
+}
+
+.navbar-custom .navbar-toggler-icon {
+    background-image: url(../img/menu-icon-inactive.png);
+    height: 35px;
+    width: 35px;
+}
+
+.navbar-custom .navbar-toggler-icon:pressed {
+    background-image: url(../img/menu-icon-active.png);
+    height: 35px;
+    width: 35px;
+}
