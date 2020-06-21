@@ -7,8 +7,8 @@ Sythetic biology allows the production of enzymes from a bacterial culture. Impo
 
 In order to solve this pressing issue with synthetic biology, we created a conversion utility from standard protocol formats. We envision scientists who would like to disseminate plasmids to use this software to create easy to follow and reproducible walkthroughs.
 
-The example use of this utility is the LAMP-DETECTR diagnostic as listed here: https://mammoth.bio/wp-content/uploads/2020/02/A-protocol-for-rapid-detection-of-the-2019-novel-coronavirus-SARS-CoV-2-using-CRISPR-diagnostics-SARS-CoV-2-DETECTR.pdf.
-However, we also envision this tool being used to make many synthetic biology protocols simpler, or even as part of a workflow.
+We envision this tool being used to make many synthetic biology protocols simpler, or even as part of a regular workflow. However, the accessibility of testing can be life saving, and this is where we feel Synplifier can really excel: in combination with distributed enzymes, testing, and test kit production can be done within the community by the community. With this in mind, the example use of this utility is the LAMP-DETECTR diagnostic as listed here: https://mammoth.bio/wp-content/uploads/2020/02/A-protocol-for-rapid-detection-of-the-2019-novel-coronavirus-SARS-CoV-2-using-CRISPR-diagnostics-SARS-CoV-2-DETECTR.pdf. 
+
 
 
 
