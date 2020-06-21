@@ -54,49 +54,75 @@ function setup() {
     textAlign(CENTER, CENTER);
     colorMode(HSB, 100)
 }
+var dry = [];
+var wet = [];
+var tool = [];
 function draw() {
-    if(reagents.length >0){
-            //setup reagents
-            if(reagents[0].hue == 0){
-            for(i = 0; i< reagents.length; i++)
+    if(reagents.length >0 && dry.length == 0){
+            for(let i=0; i<reagents.length; i++)
             {
-                t = reagents[i].type;
-                if(t == "dry")
-                {
-                    reagents[i].hue = Math.random()*(1/3)
-                    reagents[i].x = 100
-                    reagents[i].y = 30+i*70 + h/3
+                if (reagents[i].type=="dry")
+                    dry.push(reagents[i])
+                else if (reagents[i].type == "wet"){
+                    wet.push(reagents[i])
                 }
-                if(t == "wet")
-                {
-                    reagents[i].hue =  1/3+Math.random()*(1/3)
-                    reagents[i].x = 300
-                    reagents[i].y =  30+i*70 - 40
-                }
-                if(t == "tool")
-                {
-                    reagents[i].hue = 2/3+Math.random()*(1/3)
-                    reagents[i].x = 500
-                    reagents[i].y =  30+i*70 - h/2
-                }
+                else {tool.push(reagents[i])}
+            }
+            //setup reagents
+            if(dry[0].hue == 0){
+                for(i = 0; i< dry.length; i++){
+                        dry[i].hue = Math.random()*(1/3)
+                        dry[i].x = 100
+                        dry[i].y = ((i+1)/(dry.length+2))*w
+                    }
+                for(i = 0; i< wet.length; i++)
+                    {
+                        wet[i].hue =  1/3+Math.random()*(1/3)
+                        wet[i].x = 300
+                        wet[i].y = ((i+1)/(wet.length+2))*w
+                    }
+                for(i = 0; i< tool.length; i++){
+                    {
+                        tool[i].hue = 2/3+Math.random()*(1/3)
+                        tool[i].x = 500
+                        tool[i].y = ((i+1)/(tool.length+2))*w
+                    }
                 }
             }
-        background(BKG_COLOR);
-        for (i = 0; i < reagents.length; i++) {
-            fill(color(reagents[i].hue*100, 100, 100));
+            }
+            background(BKG_COLOR);
             noStroke()
-            tx = reagents[i].x
-            ty = reagents[i].y
-            if(reagents[i].type == "wet"){circle(tx, ty, 50)};
-            if(reagents[i].type == "dry"){rect(tx, ty, 60,40)};
-            if(reagents[i].type == "tool"){triangle(tx-40, ty-20, tx,ty+20, tx+40, ty-20)}
-            fill(TEXT_COLOR)
             strokeWeight(0);
-            text(reagents[i].name, tx, ty+TEXT_OFFSET);
-        }
+            //this was so annoying to set up and inefficient but so worth it
+            for(i = 0; i< dry.length; i++){
+                    fill(color(dry[i].hue*100,100,100))
+                    tx = dry[i].x
+                    ty = dry[i].y
+                    rect(tx, ty, 60,40)
+                    fill(TEXT_COLOR)
+                    text(dry[i].name, tx, ty+TEXT_OFFSET);
+                }
+            for(i = 0; i< wet.length; i++)
+                {
+                    fill(color(wet[i].hue*100,100,100))
+                    tx = wet[i].x
+                    ty = wet[i].y
+                    circle(tx,ty, 50,50)
+                    fill(TEXT_COLOR)
+                    text(wet[i].name, tx, ty+TEXT_OFFSET);
+                }
+            for(i = 0; i< tool.length; i++){
+                {
+                    fill(color(tool[i].hue*100,100,100))
+                    tx = tool[i].x
+                    ty = tool[i].y
+                    triangle(tx-40, ty-20, tx,ty+20, tx+40, ty-20)
+                    fill(TEXT_COLOR)
+                    text(tool[i].name, tx, ty+TEXT_OFFSET);
+                }
+            }
         strokeWeight(STROKE_WEIGHT);
         stroke(STROKE_COLOR);
-    }
 
     if(States === undefined || States.length == 0)
     {
