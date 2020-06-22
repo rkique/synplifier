@@ -7,6 +7,6 @@ In order to solve this pressing issue with synthetic biology, we created a conve
 
 We envision this tool being used to make many synthetic biology protocols simpler, or even as part of a regular workflow. However, the accessibility of testing can be life saving, and this is where we feel Synplifier can really excel: in combination with distributed enzymes, testing, and test kit production can be done within the community by the community. With this in mind, the example use of this utility is the LAMP-DETECTR diagnostic as listed here: https://mammoth.bio/wp-content/uploads/2020/02/A-protocol-for-rapid-detection-of-the-2019-novel-coronavirus-SARS-CoV-2-using-CRISPR-diagnostics-SARS-CoV-2-DETECTR.pdf. 
 
+To use this tool, enter Reagent objects into the upper window and enter procedures into the bottom one. This will generate a walkthrough of testing steps, which can be coordinated with regular lab equipment and supplies or used in conjunction with specialized test production kits.
 
-
-
+Give a man a fish and you feed him for a day; teach a man to fish and you feed him for a lifetime.
