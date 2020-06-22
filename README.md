@@ -1,5 +1,5 @@
 # A Synthetic Biology Procedures Simplifier
-Defhacks 2020 submission. Breaks down synthetic biology protocols into elementary steps in order to massively increase access to testing reagents.
+Defhacks 2020 submission. Breaks down synthetic biology protocols into elementary steps to lower skill barriers to testing reagent production.
 
 Project outline:
 
