@@ -17,14 +17,70 @@
     text-decoration: underline;
 }
 
-.navbar-custom .navbar-toggle {
-    background-image: url(../img/menu-icon-inactive.png);
-    height: 35px;
-    width: 35px;
+/* Styling for about.html */
+.about-title {
+    color: white;
+    font-family: 'MuseoModerno', cursive;
+    font-size: 40px;
+    font-weight: 400;
 }
 
-.navbar-custom .navbar-toggle:pressed {
-    background-image: url(../img/menu-icon-active.png);
-    height: 35px;
-    width: 35px;
+.banner-image {
+    color: black;
+    height: 50vh;
+    min-height: 500px;
+    background-image: url(images/dna.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.banner-image-sub {
+    min-height: 500px;
+    height: 50vh;
+    padding-top: calc(30vh + 75px);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.banner-image-guide {
+    color: black;
+    height: 50vh;
+    min-height: 500px;
+    background-image: url(images/test_tubes.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.banner-image-sub-guide {
+    min-height: 500px;
+    height: 50vh;
+    padding-top: calc(30vh + 75px);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.image-about {
+    width: 170px;
+    height: 70px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    opacity: 0.7;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.about-text {
+    padding-top: 10px;
+    min-height: 100vh;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'MuseoModerno', cursive;
 }
