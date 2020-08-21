@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+        <script src="codemirror.js"></script>
+        <script src="javascript.js"></script>
+        <link href="themes/prism.css" rel="stylesheet" />
+        <link rel="stylesheet" href="codemirror.css">
+        <script src="javascript.js"></script>
+
+        <meta charset="utf-8">
+        <title>Synplifier</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Using interactive graphical tools to spread knowledge of synthetic biology lab procedures.">
+        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap" rel="stylesheet">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="img/icon.PNG">
+        <link rel = "stylesheet" href = "index.css">
+        <style>
+            body {
+                min-height: 75rem;
+                padding-top: 4.5rem;
+            }
+            
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class = "navbar navbar-custom navbar-expand-md fixed-top ">
+            <a class = "navbar-branch" href = "index.html"><img src = "images/syn_resized.png" id = "navbar-logo"></a>
+            <div class = "collapse navbar-collapse" id = "navbar-coll">
+                <li>
+                    <a class = "active nav-link py-0" href = "index.html">Lab</a>
+                </li>
+                <li>
+                    <a class = "nav-link py-0" href = "about.html">About Us</a>
+                </li>
+                <li>
+                    <a class = "nav-link py-0" href = "guide.html">Guide to Commands</a>
+                </li>
+            </div>
+        </nav>
+        <br>
+        <textarea  style="position: absolute; top: 40px; left: 500px" id="objects" name="objects" rows="30" cols="30">Enter the objects here.</textarea>
+        <textarea  style="position: absolute; top: 0px; left: 500px" id="procedures" name="procedures" rows="30" cols="30">Enter the procedural steps here.</textarea>
+        
+        <button style="position: absolute; bottom: 10px; right:300 px" id= "procbutton" onclick="readprocedures()">submit procedures</button>
+        <button style="position: absolute; bottom: 290px; right:300 px" id="objbutton" onclick="readobjects()">submit objects</button>
+        
+        
+        <script>
+            var objMirror = CodeMirror.fromTextArea(document.getElementById("objects"));
+            objMirror.setSize("50%", null);
+        
+            function readobjects(){
+                objMirror.save();
+                var objcode = document.getElementById('objects').value;
+                eval(objcode);
+            }
+        
+            var procMirror = CodeMirror.fromTextArea(document.getElementById("procedures"));
+            procMirror.setSize("50%", null);
+        
+            function readprocedures(){
+                procMirror.save();
+                var proccode = document.getElementById('procedures').value;
+                eval(proccode);
+            }
+        
+        </script>
+        <script src="app.js"></script>
+    </body>
+</html>
