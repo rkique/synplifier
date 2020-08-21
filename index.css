@@ -1,3 +1,17 @@
+body{
+    overflow: hidden;
+    background-color: #00008B;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
 .navbar-custom {
     background-color: #000000;
 }
