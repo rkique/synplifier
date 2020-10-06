@@ -7,7 +7,7 @@ var BKG_COLOR = 70;
 var TEXT_SIZE = 14;
 var TEXT_COLOR = 0;
 var TEXT_OFFSET = 30;
-var STROKE_WEIGHT = 10; 
+var STROKE_WEIGHT = 10;
 var STROKE_COLOR = 0;
 var Canvas_X_Offset = 630;
 function reagent(qty="0g",name,type="dry") {
