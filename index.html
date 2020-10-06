@@ -4,7 +4,6 @@
         <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
         <script src="codemirror.js"></script>
         <script src="javascript.js"></script>
-        <link href="themes/prism.css" rel="stylesheet" />
         <link rel="stylesheet" href="codemirror.css">
         <script src="javascript.js"></script>
 
@@ -19,7 +18,6 @@
         <style>
             body {
                 min-height: 75rem;
-                padding-top: 4.5rem;
             }
             
             .bd-placeholder-img {
@@ -61,25 +59,25 @@
                 <button id="objbutton" onclick="readobjects()">submit objects</button>
                 <textarea id="procedures" name="procedures" rows="30" cols="30">Enter the procedural steps here.</textarea>
                 <button id= "procbutton" onclick="readprocedures()">submit procedures</button>
+
             </div>
-            <div id="leftcolumn" class="column" style="position: relative; right: 0px;">
+            <div id = "rightColumn" class="column">
                 <script>
                     var objMirror = CodeMirror.fromTextArea(document.getElementById("objects"));
-                    objMirror.setSize("70%", null);
+                    objMirror.setSize("100%", null);
                     function readobjects(){
                         objMirror.save();
                         var objcode = document.getElementById('objects').value;
+                        alert(objcode)
                         eval(objcode);
                     }
                 
                     var procMirror = CodeMirror.fromTextArea(document.getElementById("procedures"));
-                    procMirror.setSize("70%", null);
                     function readprocedures(){
                         procMirror.save();
                         var proccode = document.getElementById('procedures').value;
                         eval(proccode);
                     }
-                
                 </script>
                 <script src="app.js"></script>
             </div>

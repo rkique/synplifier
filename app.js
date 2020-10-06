@@ -1,8 +1,6 @@
 var reagents = []
 var States = [];
 var q = 0;
-var w = 1050;
-var h = 700;
 var BKG_COLOR = 70;
 var TEXT_SIZE = 14;
 var TEXT_COLOR = 0;
@@ -10,6 +8,8 @@ var TEXT_OFFSET = 30;
 var STROKE_WEIGHT = 10;
 var STROKE_COLOR = 0;
 var Canvas_X_Offset = 630;
+
+//def REAGENT
 function reagent(qty="0g",name,type="dry") {
     this.x = 0;
     this.y = 0;
@@ -46,19 +46,28 @@ States.push(new Text("END"));*/
 
 //drawing
 function setup() {
-    cnv = createCanvas(w, h);
-    cnv.position(Canvas_X_Offset, 0);
+    cnv = createCanvas(windowWidth/2, windowHeight);
+    //bruh
+    cnv.parent("rightColumn");
     angleMode(RADIANS)
     rectMode(CENTER)
     textSize(TEXT_SIZE);
     textAlign(CENTER, CENTER);
     colorMode(HSB, 100)
     textFont('Georgia');
+
 }
+
+function windowResized() {
+    //TODO: implement windowResize update
+	resizeCanvas(windowWidth/2, windowHeight);
+}
+
 var dry = [];
 var wet = [];
 var tool = [];
 function draw() {
+    //if reagents queue is not empty, try to empty into dry, wet, and tool
     if(reagents.length >0 && dry.length == 0){
             for(let i=0; i<reagents.length; i++)
             {
@@ -69,24 +78,24 @@ function draw() {
                 }
                 else {tool.push(reagents[i])}
             }
-            //setup reagents
+            //setup reagent qualities if they haven't been instantiated
             if(dry[0].hue == 0){
                 for(i = 0; i< dry.length; i++){
                         dry[i].hue = (i/dry.length)*(1/3)
-                        dry[i].x = 100
-                        dry[i].y = ((i+1)/(dry.length+2))*w
+                        dry[i].x = windowHeight/4
+                        dry[i].y = ((i+1)/(dry.length+2))*windowWidth/2
                     }
                 for(i = 0; i< wet.length; i++)
                     {
                         wet[i].hue =  1/3+(i/wet.length)*(1/3)
-                        wet[i].x = 300
-                        wet[i].y = ((i+1)/(wet.length+2))*w
+                        wet[i].x = 2*windowHeight/4
+                        wet[i].y = ((i+1)/(wet.length+2))*windowWidth/2
                     }
                 for(i = 0; i< tool.length; i++){
                     {
                         tool[i].hue = 2/3+(i/tool.length)*(1/3)
-                        tool[i].x = 500
-                        tool[i].y = ((i+1)/(tool.length+2))*w
+                        tool[i].x = 3*windowHeight/4
+                        tool[i].y = ((i+1)/(tool.length+2))*windowWidth/2
                     }
                 }
             }
@@ -94,7 +103,7 @@ function draw() {
             background(BKG_COLOR);
             noStroke()
             strokeWeight(0);
-            //this was so annoying to set up and inefficient but so worth it
+            //draw the reagents to the canvas
             for(i = 0; i< dry.length; i++){
                     fill(color(dry[i].hue*100,100,100))
                     tx = dry[i].x
@@ -108,7 +117,7 @@ function draw() {
                     fill(color(wet[i].hue*100,100,100))
                     tx = wet[i].x
                     ty = wet[i].y
-                    circle(tx,ty, 50,50)
+                    circle(tx,ty,50)
                     fill(TEXT_COLOR)
                     text(wet[i].name, tx, ty+TEXT_OFFSET);
                 }
@@ -140,12 +149,13 @@ function draw() {
             if (frameCount % 60 == 0 && States[q].seconds-- > 0) {
                 States[q].seconds--;
             }
-            text(new Date(States[q].seconds * 1000).toISOString().substr(11, 8), w - 60, 10);
+            text(new Date(States[q].seconds * 1000).toISOString().substr(11, 8), windowWidth/2 - 60, 10);
         }
         fill(STROKE_COLOR)
         strokeWeight(10);
         drawState(States[q])};
     } 
+    resizedWindow = false;
 }
 
 function mouseClicked() {
@@ -310,7 +320,7 @@ function drawState(Obj) {
     } else if (Obj instanceof Text) {
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(Obj.text, w/2, 10);
+        text(Obj.text, windowWidth/2/2, 10);
     } else {    
         console.log("objectbroken")
     }

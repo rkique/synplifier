@@ -31,7 +31,7 @@ LBPlate3 = growBacteria(LB, E, water3, C37, 3 * 60 * 60);
 //transform
 RTplate = transform(LBPlate, RT, microtubes, plates, C4, C42, C37);
 Bstplate = transform(LBPlate2, Bst, microtubes, plates, C4, C42, C37);
-Cas12aplate = transform(LBPLate3, Cas12a, microtubes, plates, C4, C42, C37);
+Cas12aplate = transform(LBPlate3, Cas12a, microtubes, plates, C4, C42, C37);
 //induce 
 RTplate = induceBacteria(RTplate, IPTG, C37);
 RTproduct = lyophilize(RTplate, lyophilizer, 4*60*60)
