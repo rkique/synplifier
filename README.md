@@ -1,6 +1,6 @@
+Interested in following our progress? https://forms.gle/vkDha7rby5zsZGYh9
 
 _This project won the Grand Prize at DefHacks 2020. View it on Devpost [here](https://devpost.com/software/synplifier)._
-
 _View the Demo on Youtube: https://youtu.be/bEU3AGqW_ro._
 
 # A Synthetic Biology Procedures Simplifier
