@@ -302,8 +302,7 @@ function incubate(culture, incubate_block, s) {
     startTimer(s)
     return culture;
 }
-
-//Draws an arrow 
+//draws state to the HTML canvas
 function drawState(Obj) {
     if (Obj instanceof Arrow) {
         var offset = 16;
@@ -325,3 +324,16 @@ function drawState(Obj) {
         console.log("objectbroken")
     }
 }
+
+/*
+app todos:
+integrate new icon set
+restructure Reagent object type
+add strong defaults for wetlab functions
+add boolean decisions to timeline
+explore OpenTrons integration
+
+site todos:
+add ability to create permalinks to visualizations
+polish the documentation
+*/
