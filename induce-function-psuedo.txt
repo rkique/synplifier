@@ -1,8 +1,0 @@
-function induce(culture){
-Highlight <10ml pipette> and draw an arrow to <culture>. Wait for user to press next.
-Highlight <agar scraper> and draw an arrow to <culture>. Wait for user to press next.
-Draw arrow from <culture> to <37 C heat block>. 
-Highlight <culture> and prompt user to bring phone closer for OD measurement utility.
-Highlight <40ul pipette> and draw an arrow to <culture>. Start timer for 3 hours.
-(after 3 hours) Display static image of expression and prompt user to confirm.
-}

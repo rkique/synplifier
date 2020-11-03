@@ -1,7 +1,7 @@
 var reagents = []
 var States = [];
 var q = 0;
-var BKG_COLOR = 70;
+var BKG_COLOR = 30;
 var TEXT_SIZE = 14;
 var TEXT_COLOR = 0;
 var TEXT_OFFSET = 30;
@@ -44,13 +44,20 @@ RTplate = transform(LBPlate, RT, microtube1, plate1, C4block, C42block, C37block
 
 States.push(new Text("END"));*/
 
+function preload() {
+    wetImg = loadImage('images/w.png');
+    dryImg = loadImage('images/d.png');
+    toolImg = loadImage('images/t.png');
+    
+  }
 //drawing
 function setup() {
     cnv = createCanvas(windowWidth/2, windowHeight);
-    //bruh
-    cnv.parent("rightColumn");
+    cnv.parent("appParent");
+    textFont('Helvetica');
     angleMode(RADIANS)
     rectMode(CENTER)
+    imageMode(CENTER)
     textSize(TEXT_SIZE);
     textAlign(CENTER, CENTER);
     colorMode(HSB, 100)
@@ -68,7 +75,7 @@ var wet = [];
 var tool = [];
 function draw() {
     //if reagents queue is not empty, try to empty into dry, wet, and tool
-    if(reagents.length >0 && dry.length == 0){
+    if(reagents.length > 0 && dry.length == 0){
             for(let i=0; i<reagents.length; i++)
             {
                 if (reagents[i].type=="dry")
@@ -103,49 +110,55 @@ function draw() {
             background(BKG_COLOR);
             noStroke()
             strokeWeight(0);
-            //draw the reagents to the canvas
-            for(i = 0; i< dry.length; i++){
-                    fill(color(dry[i].hue*100,100,100))
-                    tx = dry[i].x
-                    ty = dry[i].y
-                    rect(tx, ty, 60,40)
+            //draw DRY
+            dry.forEach((e)=>{
+                    thisColor = color(e.hue*100,100,100)
+                    tx = e.x
+                    ty = e.y
+                    tint(thisColor)
+                    image(dryImg, tx, ty);
+                    dryImg.resize(60, 0)
                     fill(TEXT_COLOR)
-                    text(dry[i].name, tx, ty+TEXT_OFFSET);
+                    text(e.name, tx, ty+TEXT_OFFSET);
                 }
-            for(i = 0; i< wet.length; i++)
+            )
+            //draw WET
+            wet.forEach((e)=>
                 {
-                    fill(color(wet[i].hue*100,100,100))
-                    tx = wet[i].x
-                    ty = wet[i].y
-                    circle(tx,ty,50)
+                    thisColor = color(e.hue*100,100,100)
+                    tx = e.x
+                    ty = e.y
+                    tint(thisColor)
+                    image(wetImg, tx, ty);
+                    wetImg.resize(0, 80)
                     fill(TEXT_COLOR)
-                    text(wet[i].name, tx, ty+TEXT_OFFSET);
-                }
-            for(i = 0; i< tool.length; i++){
-                {
-                    fill(color(tool[i].hue*100,100,100))
-                    tx = tool[i].x
-                    ty = tool[i].y
-                    triangle(tx-40, ty-20, tx,ty+20, tx+40, ty-20)
+                    text(e.name, tx, ty+TEXT_OFFSET);
+                })
+            //draw TOOL
+            tool.forEach((e)=>
+            {
+                    thisColor = color(e.hue*100,100,100)
+                    tx = e.x
+                    ty = e.y
+                    tint(thisColor)
+                    image(toolImg, tx, ty);
+                    toolImg.resize(60, 0)
                     fill(TEXT_COLOR)
-                    text(tool[i].name, tx, ty+TEXT_OFFSET);
+                    text(e.name, tx, ty+TEXT_OFFSET);
                 }
-            }
+            )
         strokeWeight(STROKE_WEIGHT);
         stroke(STROKE_COLOR);
 
     if(States === undefined || States.length == 0)
     {
-        console.log("states undefined")
         return;
     }else{
     if(q < States.length){
-        console.log("drawing States");
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(q+1+"/"+(States.length-1)+" frames ", 45, 10);
+        text(q+1+"/"+(States.length)+" frames ", 45, 10);
         if (States[q] instanceof Text && States[q].seconds > 0) {
-            console.log("timer")
             if (frameCount % 60 == 0 && States[q].seconds-- > 0) {
                 States[q].seconds--;
             }
@@ -172,11 +185,9 @@ function keyPressed() {
       q = q+1;
     }
   }
-function Arrow(x1, y1, x2, y2, amount) {
-    this.x1 = x1;
-    this.y1 = y1;
-    this.x2 = x2;
-    this.y2 = y2;
+function Arrow(constituent, recipient, amount) {
+    this.constituent = constituent;
+    this.recipient = recipient;
     this.amount = amount;
 }
 
@@ -265,7 +276,7 @@ function transfer(constituent, recipient, amount) {
     y1 = constituent.y;
     x2 = recipient.x;
     y2 = recipient.y;
-    States.push(new Arrow(x1, y1, x2, y2, amount))
+    States.push(new Arrow(constituent, recipient, amount))
     totalQty = ul(recipient.qty) + ul(amount)
     return recipient;
 }
@@ -306,16 +317,20 @@ function incubate(culture, incubate_block, s) {
 function drawState(Obj) {
     if (Obj instanceof Arrow) {
         var offset = 16;
-        line(Obj.x1, Obj.y1, Obj.x2, Obj.y2);
+        x1 = Obj.constituent.x;
+        y1 = Obj.constituent.y;
+        x2 = Obj.recipient.x;
+        y2 = Obj.recipient.y;
+        line(x1,y1,x2,y2);
             push() //start new drawing state
-            var angle = atan2(Obj.y1 - Obj.y2, Obj.x1 - Obj.x2); 
-            translate(Obj.x2, Obj.y2); 
+            var angle = atan2(y1 - y2, x1 - x2); 
+            translate(x2, y2); 
             rotate(angle-HALF_PI);
             triangle(-offset*0.5, offset, offset*0.5, offset, 0, -offset/2);
             pop();
         fill(TEXT_COLOR)
         strokeWeight(0);
-        text(Obj.amount, (Obj.x1 + Obj.x2) / 2, (Obj.y1 + Obj.y2) / 2 + 20)
+        text(Obj.amount, (x1 + x2) / 2, (y1 + y2) / 2 + 20)
     } else if (Obj instanceof Text) {
         fill(TEXT_COLOR)
         strokeWeight(0);

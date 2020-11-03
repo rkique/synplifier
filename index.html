@@ -2,39 +2,11 @@
 <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-        <script src="codemirror.js"></script>
         <script src="javascript.js"></script>
-        <link rel="stylesheet" href="codemirror.css">
         <script src="javascript.js"></script>
-
+        <link rel = "stylesheet" href = "style.css">
         <meta charset="utf-8">
         <title>Synplifier</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Using interactive graphical tools to spread knowledge of synthetic biology lab procedures.">
-        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@200&display=swap" rel="stylesheet">        
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="icon" type="image/png" href="img/icon.PNG">
-        <link rel = "stylesheet" href = "index.css">
-        <style>
-            body {
-                min-height: 75rem;
-            }
-            
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
     </head>
 
     <body>
@@ -52,35 +24,20 @@
                 </li>
             </div>
         </nav>
-        <br>
+        <br><br>
         <div class="row">
-            <div class="column">
-                <textarea id="objects" name="objects" rows="30" cols="30">Enter the objects here.</textarea>
-                <button id="objbutton" onclick="readobjects()">submit objects</button>
-                <textarea id="procedures" name="procedures" rows="30" cols="30">Enter the procedural steps here.</textarea>
-                <button id= "procbutton" onclick="readprocedures()">submit procedures</button>
-
-            </div>
-            <div id = "rightColumn" class="column">
+                <textarea id="script" name="script" rows="50" cols="30">Enter the objects here.</textarea>
+                <button id="scriptbutton" onclick="readscript()">create visualization</button>
+                <div id="appParent"></div>
                 <script>
-                    var objMirror = CodeMirror.fromTextArea(document.getElementById("objects"));
-                    objMirror.setSize("100%", null);
-                    function readobjects(){
-                        objMirror.save();
-                        var objcode = document.getElementById('objects').value;
-                        alert(objcode)
+
+                    function readscript(){
+                        var objcode = document.getElementById('script').value;
                         eval(objcode);
                     }
                 
-                    var procMirror = CodeMirror.fromTextArea(document.getElementById("procedures"));
-                    function readprocedures(){
-                        procMirror.save();
-                        var proccode = document.getElementById('procedures').value;
-                        eval(proccode);
-                    }
                 </script>
                 <script src="app.js"></script>
-            </div>
         </div>
     </body>
 </html>
