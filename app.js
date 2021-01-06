@@ -10,7 +10,7 @@ var STROKE_COLOR = 0;
 var Canvas_X_Offset = 630;
 
 //def REAGENT
-function reagent(qty="0g",name,type="dry") {
+function reagent(qty="0g",name="none",type="dry") {
     this.x = 0;
     this.y = 0;
     this.qty = qty;
