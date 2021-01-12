@@ -1,0 +1,8 @@
+['Polymerase', 'Polymerase is an enzyme found in <a href='#' onclick='forceSearch(`bacteria`)'>bacteria</a>.'],
+
+//<a href='#' onclick='forceSearch(`plasmid`)'>plasmid</a>
+
+
+
+['Polymerase', 'Polymerase<b>is<b>a<b>enzyme<b>found<b>in<b>[[bacteria]].
+'],
