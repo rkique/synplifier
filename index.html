@@ -2,6 +2,24 @@
 <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+        <script>
+            function postGQL(){
+                        fetch('https://5r7cgblmcbanthi27a6ecgfnjq.appsync-api.us-west-2.amazonaws.com/graphql/da2-dgk7v3ppdfa3jb7c7yszx7y74y', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: `
+                listTestModels {
+                    items {
+                    text
+                    }
+                }
+            ` 
+            }),
+            })
+            .then(res => res.json())
+            .then(res => console.log(res.data));
+            }
+        </script>
         <link rel = "stylesheet" href = "style.css">
         <meta charset="utf-8">
         <title>Synplifier</title>
@@ -9,10 +27,11 @@
 
     <body>
         <h1>synplifier</h1>
+        <p>"At the theoretical level, the steps needed for obtaining a recombinant protein are pretty straightforward. You take your gene of interest, clone it in whatever expression vector you have at your disposal, transform it into the host of choice, induce and then, the protein is ready for purification and characterization. In practice, however, dozens of things can go wrong."</p>
         <input type="text" maxlength="64"  id="search"/>
+        <script src="dict.js"></script>
         <p style="display:inline; margin-left: 50px; font-size: 32px" id="charcount"></p>
         <p id="header">header</p>
-        <script src="dict.js"></script>
         <!--
         <br><br>
         <div class="row">
