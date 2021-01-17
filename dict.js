@@ -1,4 +1,12 @@
 
+/*
+TODO:
+add tags
+visuals:
+fjdjff
+synthetic biology focuses on one thing: expressing a custom protein
+
+*/
 var terms = [
 
     ["plasmid", "A circular fragment of DNA which can replicate independently of bacteria. Through the process of transformation, we can insert foreign plasmid -- and so, foreign DNA -- into bacteria like Escherichia coli."],   
@@ -21,7 +29,7 @@ var terms = [
     ["DNA (replication)", "DNA is double stranded: DNA replication takes single strands and copies it to make two DNA molecules."],
     ["T4 Polymerase","T4 is a type of polymerase. It requires a template and a primer", "https://www.neb.com/products/m0203-t4-dna-polymerase#Product%20Information"],
     ["Bst Polymerase <em>extracted from Bacillus stearothermophilus </em>","Bst Polymerase is a type of polymerase used primarily for LAMP, a quick isothermal amplification method."],
-    ["polymerase","Polymerase is an enyzme that attaches to single stranded template DNA and completes it by assembling a complementary strand. It is necessary for any amplification method, such as PCR or LAMP "],
+    ["polymerase","Polymerase is an enyzme that attaches to single stranded template DNA and completes it by assembling a complementary strand. It is necessary for any amplification method, such as PCR or LAMP."],
     ["LAMP <em>Loop-Mediated Isothermal Amplification</em>","Loop-Mediated Isothermal Amplification is a way to copy DNA extremely fast. It forms barbell-like structures which allow for multiple replication sites. "],
     ["annealing", "cooling to let primers to attach to the ends of template DNA"],
     ["extending", "heating to let the polymerase create a new strand of DNA"],
