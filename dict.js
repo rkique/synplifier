@@ -113,7 +113,6 @@ function handleInput(e) {
 function updateResults(text){
     matches = []
     document.getElementById("header").textContent = ""
-  document.getElementById("charcount").innerHTML = `${text.length}`;
   for(i = 0; i<terms.length; i++)  
   {
       standardizedTerm = terms[i][0].toLowerCase()
