@@ -2,9 +2,7 @@
 /*
 TODO:
 add tags
-visuals:
-fjdjff
-synthetic biology focuses on one thing: expressing a custom protein
+add visuals/representation schema
 
 */
 var terms = [
