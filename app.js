@@ -1,21 +1,39 @@
 var fs = require('fs')
-var http = require('http');
 //var MongoClient = require('mongodb').MongoClient;
-
-
 
 var obj = JSON.parse(fs.readFileSync('terms.json', 'utf8'));
 
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
+router.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
+  //__dirname : It will resolve to your project folder.
+});
 
-http.createServer(function(req,res){
+router.get('/style.css',function(req,res){
+  res.sendFile(path.join(__dirname+'/style.css'));
+});
+
+router.get('/dict.js',function(req,res){
+  res.sendFile(path.join(__dirname+'/dict.js'));
+});
+
+//read index.html (with routes to css and js set above)
+app.get('/', (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write("<h1>" + obj.terms[0].key1 +"</h1>");
-  //process.env.PORT is the heroku assigned port for the server
-}).listen(process.env.PORT || 3000, function () {console.log("server started port 3000")})
+  fs.readFile('index.html', function(err, data) {
+    res.write(data);
+    return res.end();
+  });
+});
 
-
-
+//add the router
+app.use('/', router);
+app.listen(process.env.port || 3000);
+console.log('Running at Port 3000');
 
 
 //var url = "mongodb://localhost:27017/";
