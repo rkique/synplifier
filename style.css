@@ -1,9 +1,18 @@
 #search
 {
-    height:100px;
-    width: 500px;
+    height:80px;
+    width: 800px;
     font-size:32pt;
+    color: #93c2c7;
+    background-color: #00000030;
+    border: none;
+    outline: none;
 }  
+
+input[type=text]:focus {
+  border: none;
+  outline: none;
+}
 
 html {
     overflow: scroll;
@@ -26,6 +35,10 @@ html {
  */
 /* Body */
 
+.display {
+  max-width: 52em;
+  margin: 0 auto;
+}
 html {
     font-size: 62.5%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; 
@@ -36,10 +49,10 @@ html {
   body {
     font-size: 1.8rem;
     line-height: 1.618;
-    max-width: 52em;
+    max-width: 70em;
     margin: 0 auto;
-    color: #839496;
-    background-color: #002b36;
+    color: #93c2c7;
+    background-color: #002B36;
     padding: 0px; }
   
   @media (max-width: 684px) {
@@ -49,15 +62,17 @@ html {
   @media (max-width: 382px) {
     body {
       font-size: 1.35rem; } }
+
+      
   em {
       font-size: 1.6rem;
-      color: #526668
+      color: rgb(118, 143, 147)
   }
 
   .outlink{
     display: inline-flex;
 
-    background-color: rgb(65, 171, 216);
+    background-color:  #004a5b;
     flex-direction: row;
     margin: 0 20px;
     padding: 0px 10px;
@@ -80,7 +95,9 @@ html {
     margin-right: 10px;
     padding: 10px 10px;
   }
-
+  .entry img{
+    background-color: white;
+  }
   .entry-right{
     width: 600px;
   }
@@ -133,12 +150,12 @@ html {
   
   a {
     text-decoration: none;  
-    color: #dd8e60; }
+    color: #b13b04; }
     a:hover {
-      color: #be1818;
-      border-bottom: 2px solid #839496; }
+      color:#b13b04;
+      border-bottom: 2px solid #b13b04; }
     a:visited {
-      color: #dd8e60; }
+      color: #b13b04; }
   
 
    ul {
@@ -152,8 +169,9 @@ html {
     max-width: none;
     display:inline;
     float: right;
-    font-size: 11px;
-    margin-top: 0px;
+    margin-right: 8rem;
+    font-size: 12px;
+    margin-top: 0px;  
   }
 
 
@@ -202,49 +220,13 @@ html {
     padding: 0.5em;
     border-bottom: 1px solid #073642; }
   
-  /* Buttons, forms and input */
   
   textarea {
     width: 100%; }
   
-  .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
-    display: inline-block;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: #2aa198;
-    color: #002b36;
-    border-radius: 1px;
-    border: 1px solid #2aa198;
-    cursor: pointer;
-    box-sizing: border-box; }
-    .button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
-      cursor: default;
-      opacity: .5; }
-    .button:focus:enabled, .button:hover:enabled, button:focus:enabled, button:hover:enabled, input[type="submit"]:focus:enabled, input[type="submit"]:hover:enabled, input[type="reset"]:focus:enabled, input[type="reset"]:hover:enabled, input[type="button"]:focus:enabled, input[type="button"]:hover:enabled {
-      background-color: #657b83;
-      border-color: #657b83;
-      color: #002b36;
-      outline: 0; }
-  
-  textarea, select, input {
-    color: #839496;
-    padding: 6px 10px;
-    /* The 6px vertically centers text on FF, ignored by Webkit */
-    margin-bottom: 10px;
-    background-color: #073642;
-    border: 1px solid #073642;
-    border-radius: 4px;
-    box-shadow: none;
-    box-sizing: border-box; }
-    textarea:focus, select:focus, input:focus {
-      border: 1px solid #2aa198;
-      outline: 0; }
-  
-  input[type="checkbox"]:focus {
-    outline: 1px dotted #2aa198; }
 
+
+  
       
 
 canvas{
