@@ -5,6 +5,7 @@ add tags
 add visuals/representation schema
 
 */
+/*
 terms = [
     {"short":"plasmid", "definition":"A circular fragment of DNA which can replicate independently of bacteria. Through the process of transformation, we can insert foreign plasmid -- and so, foreign DNA -- into bacteria like Escherichia coli.", "img":"https://cdn.kastatic.org/googleusercontent/Vyfw8D9Vm1uyG0WZzonRLPvOep5nABNAk3tiENOIjsJpWU7bnTFob_mbTeCZpzCghLZaFkG8KQEqRmBaTDdsRuNONQ"},
    
@@ -141,7 +142,7 @@ terms = [
     {"short":"", "definition":""},
 
     {"short":"", "definition":""}
-    ]
+    ]*/
 
 //title linking
 let titles = terms.map(term => term.short)

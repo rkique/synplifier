@@ -2,7 +2,7 @@ var fs = require('fs')
 //var MongoClient = require('mongodb').MongoClient;
 
 var obj = JSON.parse(fs.readFileSync('terms.json', 'utf8'));
-
+console.log(obj.terms[0].short)
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -25,6 +25,9 @@ router.get('/dict.js',function(req,res){
 app.get('/', (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile('index.html', function(err, data) {
+    //pass in terms ??
+    res.write("<script> ")
+    obj.terms.forEach(term => res.write(term.short))
     res.write(data);
     return res.end();
   });
@@ -32,8 +35,8 @@ app.get('/', (req, res) => {
 
 //add the router
 app.use('/', router);
-app.listen(process.env.PORT);
-console.log('Running at Port 3000');
+app.listen(process.env.PORT || 4000);
+console.log('Running at Port 4000');
 
 
 //var url = "mongodb://localhost:27017/";

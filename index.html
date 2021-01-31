@@ -2,24 +2,7 @@
 <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-        <script>
-            function postGQL(){
-                        fetch('https://5r7cgblmcbanthi27a6ecgfnjq.appsync-api.us-west-2.amazonaws.com/graphql/da2-dgk7v3ppdfa3jb7c7yszx7y74y', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: `
-                listTestModels {
-                    items {
-                    text
-                    }
-                }
-            ` 
-            }),
-            })
-            .then(res => res.json())
-            .then(res => console.log(res.data));
-            }
-        </script>
+        <script type="text/javascript" src="terms.js"></script>
         <link rel = "stylesheet" href = "style.css">
         <meta charset="utf-8">
         <title>Synplifier</title>
