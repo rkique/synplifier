@@ -98,7 +98,6 @@ for(i = 0; i<terms.length; i++)
         if (!badStrings.includes(titles[j])){
             if(formattedTerms.split(" ").includes(titles[j]))
             {
-                console.log("found that "+formattedTerms+" contains "+titles[j])
                 replacementText = "<a href='#' onclick='forceSearch("+"`"+titles[j]+"`)'>"+titles[j]+"</a>"
                 terms[i].definition = terms[i].definition.split(titles[j]).join(replacementText)
             }
@@ -142,8 +141,6 @@ function displayMatches(matches){
 
 
         thisMatch = matches[i]
-        console.log(thisMatch)
-
         //use the img flex-box layout
         if(typeof thisMatch.img !== 'undefined'){
             //flexbox display visual and match side by side
