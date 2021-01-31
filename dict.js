@@ -38,7 +38,7 @@ terms = [
     {"short":"CRISPR", "definition":"CRISPR refers to the DNA sequences which the CRISPR Cas system recognizes and cuts. Originally a defense mechanism within infections within cells."},
     {"short":"Cas9 <em>CRISPR-associated protein</em>", "definition":"An endonuclease which can use RNA guides to identify and cleave DNA targets"},
     {"short":"CRISPR Cas", "definition":"A family of CRISPR-associated proteins which can identify and cut DNA and RNA sequences"},
-    //{"short":"guide sequence", "definition":"A guide sequence is a short strand of RNA used with endonucleases to target complementary sequences "},
+    {"short":"guide sequence", "definition":"A guide sequence is a short strand of RNA used with endonucleases to target complementary sequences "},
     {"short":"endonuclease", "definition":"An enzyme that cuts DNA or RNA."},
     {"short":"autoclave", "definition":"a machine used to sterilize dishes and tubes."},
     {"short":"qPCR <em>quantitative polymerase chain reaction</em>", "definition":"PCR with dye added to measure exactly how much replication is happening over time."},
@@ -47,7 +47,7 @@ terms = [
     {"short":"lac operon", "definition":"An operon which is activated by lactose. For example IPTG"},
     {"short":"IPTG", "definition":"A liquid used to induce expression through the lac operon"},
     {"short":"reagent", "definition":"substance or mixture. Usually liquid or powder."},
-    {"short":"qRT-PCR <em> real-time quantitative polymerase chain reaction</em>", "definition":"RT in RT-PCR and qRT-PCR refer to different things. PCR that allows you to see amplification of DNA molecules in real-time by dying DNA. "},
+    {"short":"qRT-PCR <em> real-time quantitative polymerase chain reaction</em>", "definition":"RT in RT-PCR and qRT-PCR refer to different things. PCR that allows you to see amplification of DNA molecules in real-time by dying DNA. ", "img":"https://upload.wikimedia.org/wikipedia/commons/4/4e/Qpcr-cycling.png"},
     {"short":"enzyme", "definition":"Denoted by the suffix -ase, enzymes are proteins which fulfill specific functions within a cell."},
     {"short":"proteins", "definition":"Proteins are macromolecules formed by amino acids."},
     {"short":"amino acids", "definition":"Amino acids are organic compounds assembled by ribosomes into proteins based on RNA"},
@@ -139,14 +139,15 @@ function displayMatches(matches){
     let matchHTML = ""
     for(i = 0; i<matches.length; i++){
 
-
+        //height of images, in pixels
+        imgHeight = 150
         thisMatch = matches[i]
         //use the img flex-box layout
         if(typeof thisMatch.img !== 'undefined'){
             //flexbox display visual and match side by side
             matchHTML += "<div class='entry'>"
             matchHTML += "<div class='entry-left'>"
-            matchHTML +="<img style='height:200px' src='"+thisMatch.img+"'>"
+            matchHTML +="<img style='height:"+imgHeight+"px' src='"+thisMatch.img+"'>"
             matchHTML += "</div>"
             matchHTML += "<div class='entry-right'>"
             matchHTML +="<h4>"
@@ -156,6 +157,7 @@ function displayMatches(matches){
     
             //add external definition pills
             if(typeof thisMatch.outlink !== 'undefined'){
+                
             matchHTML += "<div class='outlink'>"
             matchHTML +="<a target=' blank' rel='noopener noreferrer' href='"+thisMatch.outlink+"'>"
             matchHTML += "view on "+ thisMatch.outlink.split("www.").join(".").split(".")[1]
@@ -168,6 +170,7 @@ function displayMatches(matches){
         }
         //use the no-img simple layout
         else {
+        matchHTML +="<div class='text-entry'>"
         matchHTML +="<h4>"
         matchHTML += thisMatch.short
         matchHTML +="</h4>"
@@ -178,6 +181,7 @@ function displayMatches(matches){
         matchHTML +="<a target=' blank' rel='noopener noreferrer' href='"+thisMatch.outlink+"'>"
         matchHTML += "view on "+ thisMatch.outlink.split("www.").join(".").split(".")[1]
         matchHTML +="</a>"
+        matchHTML += "</div>"
         matchHTML += "</div>"
         }   
         }

@@ -73,8 +73,7 @@ html {
   }
 
   .entry{
-    border-style: solid;
-    display: flex
+    display: flex;
   }
 
   .entry-left {
