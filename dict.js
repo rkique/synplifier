@@ -13,7 +13,7 @@ terms = [
     {"short":"ligation", "definition":"Joining, or 'gluing' two nucleic acid fragments."},
     {"short":"DNA <em> deoxyribonucleic acid</em>", "definition":"A strand of molecules which contain instructions for the proteins which make up living things. Modifying it allows you to express (generate) different proteins."},
     {"short":"induction", "definition":"induction is triggering expression within a bacteria, for example by adding IPTG to turn on the lac operon."},
-    {"short":"centrifuge", "definition":"A spinning machine with on its outside. It separates (centrifuges) bacteria from liquid culture", "img": "https://us.vwr.com/stibo/bigweb/std.lang.all/58/17/24125817.jpg"},
+    {"short":"centrifuge", "definition":"A spinning machine. It separates (centrifuges) bacteria from liquid culture", "img": "https://us.vwr.com/stibo/bigweb/std.lang.all/58/17/24125817.jpg"},
     {"short":"gibson assembly", "definition":"A way to glue (ligate) DNA fragments together. Gibson requires an exonuclease, polymerase, and DNA ligase steps.", "outlink":"https://www.neb.com/protocols/2012/12/11/gibson-assembly-protocol-e5510"},
     {"short":"SLIC <em> sequence and ligation independent cloning</em>", "definition":"A way to glue (ligate) DNA fragments together. SLIC uses imprecise exonuclease activity.", "outlink":"https://www.neb.com/applications/cloning-and-synthetic-biology/dna-assembly-and-cloning/golden-gate-assembly"},
     {"short":"Golden Gate", "definition":"A way to glue (ligate) DNA fragments together.", "outlink":"https://www.protocols.io/view/slic-protocol-6t3heqn"},
@@ -86,17 +86,22 @@ for(i = 0; i<desc.length; i++)
     newArray.push([titles[i],desc[i]])
 }
 
-//for each term...
+//for each term's description
 for(i = 0; i<terms.length; i++)
 {
-    //go through titles
+    //go through titles and make links
     for(j = 0; j<titles.length; j++)
     {
         formattedTerms = terms[i].definition;
-        if(formattedTerms.split(" ").includes(titles[j]))
-        {
-            replacementText = "<a href='#' onclick='forceSearch("+"`"+titles[j]+"`)'>"+titles[j]+"</a>"
-            terms[i].definition = terms[i].definition.split(titles[j]).join(replacementText)
+        badStrings = ["", " ", "-"]
+        //validate titles[j] as proper search string
+        if (!badStrings.includes(titles[j])){
+            if(formattedTerms.split(" ").includes(titles[j]))
+            {
+                console.log("found that "+formattedTerms+" contains "+titles[j])
+                replacementText = "<a href='#' onclick='forceSearch("+"`"+titles[j]+"`)'>"+titles[j]+"</a>"
+                terms[i].definition = terms[i].definition.split(titles[j]).join(replacementText)
+            }
         }
     }
 }
@@ -138,13 +143,13 @@ function displayMatches(matches){
 
         thisMatch = matches[i]
         console.log(thisMatch)
-        //flexbox display visual and match side by side
-        matchHTML += "<div class='entry'>"
 
         //use the img flex-box layout
         if(typeof thisMatch.img !== 'undefined'){
+            //flexbox display visual and match side by side
+            matchHTML += "<div class='entry'>"
             matchHTML += "<div class='entry-left'>"
-            matchHTML +="<img src='"+thisMatch.img+"'>"
+            matchHTML +="<img style='height:200px' src='"+thisMatch.img+"'>"
             matchHTML += "</div>"
             matchHTML += "<div class='entry-right'>"
             matchHTML +="<h4>"
