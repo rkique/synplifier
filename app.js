@@ -12,7 +12,8 @@ console.log(obj.terms[0].key1)
 http.createServer(function(req,res){
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.write(obj.terms[0].key1);
-}).listen(3000, function () {console.log("server started port 3000")})
+  //process.env.PORT is the heroku assigned port for the server
+}).listen(process.env.PORT || 3000, function () {console.log("server started port 3000")})
 
 
 
