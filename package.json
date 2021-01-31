@@ -1,0 +1,19 @@
+{
+  "name": "synplifier",
+  "version": "1.0.0",
+  "description": "Towards accessible synthetic biology",
+  "main": "app.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified biology\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkique/synplifier.git"
+  },
+  "author": "\"me\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkique/synplifier/issues"
+  },
+  "homepage": "https://github.com/rkique/synplifier#readme"
+}
