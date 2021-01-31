@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rkique/synplifier/issues"
   },
-  "homepage": "https://github.com/rkique/synplifier#readme"
+  "homepage": "https://github.com/rkique/synplifier#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

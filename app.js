@@ -6,12 +6,11 @@ var http = require('http');
 
 var obj = JSON.parse(fs.readFileSync('terms.json', 'utf8'));
 
-console.log(obj.terms[0].key1)
 
 
 http.createServer(function(req,res){
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write(obj.terms[0].key1);
+  res.write("<h1>" + obj.terms[0].key1 +"</h1>");
   //process.env.PORT is the heroku assigned port for the server
 }).listen(process.env.PORT || 3000, function () {console.log("server started port 3000")})
 
