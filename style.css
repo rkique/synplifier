@@ -1,3 +1,39 @@
+.lightbox {
+  /* Default to hidden */
+  display: none;
+
+  /* Overlay entire screen */
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* A bit of padding around image */
+  padding: 1em;
+
+  /* Translucent background */
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Unhide the lightbox when it's the target */
+.lightbox:target {
+  display: block;
+}
+
+.lightbox span {
+  /* Full width and height */
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* Size and position background image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 #search
 {
     height:80px;
@@ -89,6 +125,16 @@ html {
 
   .entry{
     display: flex;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color:rgb(118, 143, 147);
+    margin: 5px 5px;
+  }
+  .text-entry{
+    border-radius: 10px;
+    border-width: 1px;
+    border-color:rgb(118, 143, 147);
+    margin: 5px 5px;
   }
 
   .entry-left {
@@ -96,11 +142,13 @@ html {
     padding: 10px 10px;
   }
   .entry img{
+    margin-top: 20px;
     background-color: white;
   }
   .entry-right{
     width: 600px;
   }
+
   
 
 

@@ -1,4 +1,3 @@
-
 /*
 TODO:
 add tags
@@ -145,29 +144,28 @@ terms = [
     ]*/
 
 //title linking
-let titles = terms.map(term => term.short)
-let description = terms.map(term => term.definition)
-let desc = description.map(string => string.replace(/(<([^>]+)>)/gi, ""))
-newArray = []
-for(i = 0; i<desc.length; i++)
-{
-    newArray.push([titles[i],desc[i]])
-}
+let shorts = terms.map(term => term.short)
 
-//for each term's description
-for(i = 0; i<terms.length; i++)
-{
-    //go through titles and make links
-    for(j = 0; j<titles.length; j++)
-    {
+let aliases = terms.map(term => term.aliases)
+
+let definitions = terms.map(term => term.definition)
+
+let desc = definitions.map(string => string.replace(/(<([^>]+)>)/gi, ""))
+
+//for each term's definition
+for (i = 0; i < terms.length; i++) {
+    //go through shorts and make links
+    for (j = 0; j < shorts.length; j++) {
         formattedTerms = terms[i].definition;
-        badStrings = ["", " ", "-"]
-        //validate titles[j] as proper search string
-        if (!badStrings.includes(titles[j])){
-            if(formattedTerms.split(" ").includes(titles[j]))
-            {
-                replacementText = "<a href='#' onclick='forceSearch("+"`"+titles[j]+"`)'>"+titles[j]+"</a>"
-                terms[i].definition = terms[i].definition.split(titles[j]).join(replacementText)
+        badStrings = ["", "-"]
+        //if short is EXACTLY a bad string
+        if (!badStrings.includes(shorts[j])) {
+
+            //search WORDS for existing WORDS (no)
+            if (formattedTerms.includes(shorts[j]) || formattedTerms.includes(aliases[j])) {
+
+                replacementText = "<a href='#' onclick='forceSearch(" + "`" + shorts[j] + "`)'>" + shorts[j] + "</a>"
+                terms[i].definition = terms[i].definition.split(shorts[j]).join(replacementText)
             }
         }
     }
@@ -178,7 +176,7 @@ let log = document.getElementById('log');
 
 input.oninput = handleInput;
 
-function forceSearch(search){
+function forceSearch(search) {
     document.getElementById("search").value = search
     matches = updateResults(search)
     displayMatches(matches)
@@ -186,77 +184,104 @@ function forceSearch(search){
 
 function handleInput(e) {
     matches = updateResults(e.target.value)
-  displayMatches(matches)
-}
-function updateResults(text){
-    matches = []
-    document.getElementById("header").textContent = ""
-  for(i = 0; i<terms.length; i++)  
-  {
-      //for comparison purposes
-      standardizedTerm = terms[i].short.toLowerCase()
-      standardizedSearchTerm = text.toLowerCase()
-      if(standardizedTerm.startsWith(standardizedSearchTerm) && text != ""){
-          matches.push(terms[i])
-      }
-  }
-  return matches;
+    displayMatches(matches)
 }
 
-function displayMatches(matches){
+function updateResults(text) {
+    matches = []
+    document.getElementById("header").textContent = ""
+    for (i = 0; i < terms.length; i++) {
+        isMatch = false;
+        termBank = []
+        standardizedSearchTerm = text.toLowerCase()
+        //adding the short
+        short = terms[i].short.toLowerCase()
+
+        if (short.startsWith(standardizedSearchTerm)) {
+            matches.push(terms[i])
+        }
+        //adding the aliases (currently too slow)
+        /*
+        if(false){
+        termBank.concat(terms[i].aliases.split(",").forEach(s => s.toLowerCase()))
+        }
+        //if any terms in term bank starts with the search term
+        for(i = 0; i < termBank.length; i++)
+        {
+            if(termBank[i].startsWith(standardizedSearchTerm)){
+                isMatch = true;
+            }
+        }
+        */
+    }
+    return matches;
+}
+
+function displayMatches(matches) {
     let matchHTML = ""
-    for(i = 0; i<matches.length; i++){
+    for (i = 0; i < matches.length; i++) {
 
         //height of images, in pixels
         imgHeight = 150
         thisMatch = matches[i]
         //use the img flex-box layout
-        if(typeof thisMatch.img !== 'undefined'){
+        if (typeof thisMatch.img !== 'undefined') {
             //flexbox display visual and match side by side
             matchHTML += "<div class='entry'>"
             matchHTML += "<div class='entry-left'>"
-            matchHTML +="<img style='height:"+imgHeight+"px'; src='"+thisMatch.img+"'>"
+            matchHTML += "<a href='" + thisMatch.img + "'>" + "<img style='height:" + imgHeight + "px'; src='" + thisMatch.img + "'></a>"
             matchHTML += "</div>"
             matchHTML += "<div class='entry-right'>"
-            matchHTML +="<h4>"
+            matchHTML += "<h4>"
             matchHTML += thisMatch.short
-            matchHTML +="</h4>"
-            matchHTML  += thisMatch.definition
-    
-            //add external definition pills
-            if(typeof thisMatch.outlink !== 'undefined'){
-                
-            matchHTML += "<div class='outlink'>"
-            matchHTML +="<a target=' blank' rel='noopener noreferrer' href='"+thisMatch.outlink+"'>"
-            matchHTML += "view on "+ thisMatch.outlink.split("www.").join(".").split(".")[1]
-            matchHTML +="</a>"
+
+            if (typeof thisMatch.aliases !== 'undefined') {
+                matchHTML += "<em> " + thisMatch.aliases + " </em>"
+            }
+
+            matchHTML += "</h4>"
+            matchHTML += thisMatch.definition
+
+            //add external definition pills 
+            if (typeof thisMatch.outlink !== 'undefined') {
+
+                matchHTML += "<div class='outlink'>"
+                matchHTML += "<a target=' blank' rel='noopener noreferrer' href='" + thisMatch.outlink + "'>"
+                matchHTML += "view on " + thisMatch.outlink.split("www.").join(".").split(".")[1]
+                matchHTML += "</a>"
+                matchHTML += "</div>"
+            }
+
             matchHTML += "</div>"
-            }   
-    
             matchHTML += "</div>"
-            matchHTML += "</div>"        
         }
         //use the no-img simple layout
         else {
-        matchHTML +="<div class='text-entry'>"
-        matchHTML +="<h4>"
-        matchHTML += thisMatch.short
-        matchHTML +="</h4>"
-        matchHTML  += thisMatch.definition
-        //add external definition pills
-        if(typeof thisMatch.outlink !== 'undefined'){
-        matchHTML += "<div class='outlink'>"
-        matchHTML +="<a target=' blank' rel='noopener noreferrer' href='"+thisMatch.outlink+"'>"
-        matchHTML += "view on "+ thisMatch.outlink.split("www.").join(".").split(".")[1]
-        matchHTML +="</a>"
-        matchHTML += "</div>"
-        matchHTML += "</div>"
-        }   
+            matchHTML += "<div class='text-entry'>"
+            matchHTML += "<h4>"
+
+            matchHTML += thisMatch.short
+            if (typeof thisMatch.aliases !== 'undefined') {
+                matchHTML += "<em> " + thisMatch.aliases + " </em>"
+            }
+
+            matchHTML += "</h4>"
+
+            matchHTML += thisMatch.definition
+            //add external definition pills
+            if (typeof thisMatch.outlink !== 'undefined') {
+                matchHTML += "<div class='outlink'>"
+                matchHTML += "<a target=' blank' rel='noopener noreferrer' href='" + thisMatch.outlink + "'>"
+                matchHTML += "view on " + thisMatch.outlink.split("www.").join(".").split(".")[1]
+                matchHTML += "</a>"
+                matchHTML += "</div>"
+            }
+            matchHTML += "</div>"
         }
 
     }
     document.getElementById("header").innerHTML = matchHTML
     //create links
 
-    
+
 }

@@ -4,21 +4,21 @@ let terms =
        
         {"short":"purification", "definition":"protein purification is removing unwanted matter from expressed proteins."},
     
-        {"short":"miniprep", "definition":"Minipreparation of plasmid DNA is a rapid, small-scale isolation of plasmid DNA from bacteria. It is based on the alkaline lysis method. The extracted plasmid DNA resulting from performing a **miniprep** is itself often called a 'miniprep'"},
+        {"short":"miniprep", "definition":"Minipreparation of plasmid DNA is a rapid, small-scale isolation of plasmid DNA from bacteria. It is based on the alkaline lysis method. The extracted plasmid DNA resulting from performing a **miniprep** is itself often called a 'miniprep'", "img": "https://miniprepdotorg.files.wordpress.com/2015/10/miniprep-2.jpg?w=800"},
     
-        {"short":"bacteria", "definition":"Bacteria are small, microscopic organisms. The standard of synthetic biology is the bacterial strain _Escherichia coli_. This is due to its fast growth rate and a few other reasons, such as its safety.", "img":"https://i.pinimg.com/564x/1f/d5/fa/1fd5fa1765e5681634bb9ba260780f50.jpg"},
+        {"short":"bacteria", "definition": "Bacteria are small, microscopic organisms. The standard of synthetic biology is the bacterial strain Escherichia coli. This is due to its fast growth rate and a few other reasons, such as its safety.", "img":"https://i.pinimg.com/564x/1f/d5/fa/1fd5fa1765e5681634bb9ba260780f50.jpg"},
     
         {"short":"ligation", "definition":"Joining, or 'gluing' two nucleic acid fragments.","outlink": "https://www.khanacademy.org/science/biology/biotech-dna-technology/dna-cloning-tutorial/a/restriction-enzymes-dna-ligase", "img":"https://cdn.kastatic.org/ka-perseus-images/90e028bc741c4da8d623219daa1c5e8f933019ee.png"},
     
-        {"short":"DNA <em> deoxyribonucleic acid</em>", "definition":"A strand of molecules which contain instructions for the proteins which make up living things. Modifying it allows you to express (generate) different proteins."},
+        {"short":"DNA", "aliases": "deoxyribonucleic acid", "definition":"A strand of molecules which contain instructions for the proteins which make up living things. Modifying it allows you to express (generate) different proteins."},
     
-        {"short":"induction", "definition":"induction is triggering expression within a bacteria, for example by adding IPTG to turn on the lac operon."},
+        {"short":"induction", "definition":"induction is triggering expression within a bacteria, for example by adding IPTG to turn on the lac operon.", "img":"https://www.biologicscorp.com/wp-content/uploads/2016/03/IPTG-Induction.jpg"},
     
         {"short":"centrifuge", "definition":"A spinning machine. It separates (centrifuges) bacteria from liquid culture", "img": "https://us.vwr.com/stibo/bigweb/std.lang.all/58/17/24125817.jpg"},
     
         {"short":"gibson assembly", "definition":"A way to glue (ligate) DNA fragments together. Gibson requires an exonuclease, polymerase, and DNA ligase steps.", "outlink":"https://www.neb.com/protocols/2012/12/11/gibson-assembly-protocol-e5510"},
     
-        {"short":"SLIC <em> sequence and ligation independent cloning</em>", "definition":"A way to glue (ligate) DNA fragments together. SLIC uses imprecise exonuclease activity.", "outlink":"https://www.neb.com/applications/cloning-and-synthetic-biology/dna-assembly-and-cloning/golden-gate-assembly"},
+        {"short":"SLIC", "aliases": "sequence and ligation independent cloning", "definition":"A way to glue (ligate) DNA fragments together. SLIC uses imprecise exonuclease activity.", "outlink":"https://www.neb.com/applications/cloning-and-synthetic-biology/dna-assembly-and-cloning/golden-gate-assembly"},
     
         {"short":"Golden Gate", "definition":"A way to glue (ligate) DNA fragments together.", "outlink":"https://www.protocols.io/view/slic-protocol-6t3heqn"},
     
@@ -26,9 +26,9 @@ let terms =
     
         {"short":"gel electrophoresis", "definition":"A way to <b>measure</b> the length of DNA fragments in a sample. This is useful because it is a quick way to check if something went wrong."},
     
-        {"short":"nucleic acid", "definition":"D<b>NA</b> is a Nucleic Acid. Nucleic acid are formed from nucleotides. "},
+        {"short":"nucleic acid", "definition":"DNA is a nucleic acid. Nucleic acid are formed from nucleotides. ", "outlink": "https://www.youtube.com/watch?v=7AtO8DuWsck&ab_channel=TheOrganicChemistryTutor"},
     
-        {"short":"nucleotides", "definition":"Nucleotides are molecules that make up DNA, and store information. The four chemical bases provide this information"},
+        {"short":"nucleotides", "definition":"Nucleotides are molecules that make up DNA, and store information. The four chemical bases provide this information", "img": "https://sphweb.bumc.bu.edu/otlt/mph-modules/ph/ph709_basiccellbiology/RNA_DNA.jpg"},
     
         {"short":"bases", "definition":"There are four types of bases in DNA: Adenine (A), Cytosine (C), Guanine (G), Thymine (T). DNA is composed of these base pairs in series."},
     
@@ -38,7 +38,7 @@ let terms =
     
         {"short":"T4 Polymerase", "definition":"T4 is a type of polymerase. It requires a template and a primer","outlink": "https://www.neb.com/products/m0203-t4-dna-polymerase#Product%20Information"},
     
-        {"short":"Bst Polymerase <em>extracted from Bacillus stearothermophilus </em>", "definition":"Bst Polymerase is a type of polymerase used primarily for LAMP, a quick isothermal amplification method."},
+        {"short":"Bst Polymerase", "aliases":"extracted from Bacillus stearothermophilus", "definition":"Bst Polymerase is a type of polymerase used primarily for LAMP, a quick isothermal amplification method."},
     
         {"short":"polymerase", "definition":"Polymerase is an enyzme that attaches to single stranded template DNA and completes it by assembling a complementary strand. It is necessary for any amplification method, such as PCR or LAMP."},
     
@@ -68,15 +68,17 @@ let terms =
     
         {"short":"endonuclease", "definition":"An enzyme that cuts DNA or RNA."},
     
-        {"short":"autoclave", "definition":"a machine used to sterilize dishes and tubes."},
+        {"short":"autoclave", "definition":"a machine used to sterilize dishes and tubes.", "img": "http://www.isterilizer.com/content/images/thumbs/0002196_ezclave-n10e-full-automatic-laboratory-autoclave-sterilizer-lab.png"},
+
+        {"short": "nuclease-free water", "definition": "Water free of nucleases is necessary for PCR"},
     
         {"short":"qPCR <em>quantitative polymerase chain reaction</em>", "definition":"PCR with dye added to measure exactly how much replication is happening over time."},
     
         {"short":"RT-PCR <em> reverse transcription polymerase chain reaction </em>", "definition":"Using an enzyme to convert RNA back to DNA, and then PCRing the DNA as usual."},
     
-        {"short":"operon", "definition":"A DNA sequence with a promoter. Allows you to express the sequence at will (?), for example by adding lactose."},
+        {"short":"operon", "definition":"A DNA sequence with a promoter. Allows you to express the sequence at will, for example by adding lactose."},
     
-        {"short":"lac operon", "definition":"An operon which is activated by lactose. For example IPTG"},
+        {"short":"lac operon", "definition":"An operon which is activated by lactose. For example, IPTG"},
     
         {"short":"IPTG", "definition":"A liquid used to induce expression through the lac operon"},
     
@@ -92,11 +94,11 @@ let terms =
     
         {"short":"RNA", "definition":"RNA are single stranded temporary guides for ribosomes, transcribed from DNA."},
     
-        {"short":"histidine-tagged protein purification", "definition":"Adding a short sequence that expresses histidine residues to the end of a recombinant sequence. After the sequence is expressed, affinity chromatography can be used to select for only His-tagged proteins, the recombinant products that we want."},
+        {"short":"histidine-tagged protein purification", "definition":"Adding a short sequence that expresses histidine residues to the end of a recombinant sequence. After the sequence is expressed, affinity chromatography can be used to select for only His-tagged proteins, the recombinant products that we want.", "outlink": "https://www.bio-rad.com/featured/en/his-tag-purification.html"},
     
-        {"short":"SDS Lysis Buffer <em> sodium dodecyl sulfate </em> ", "definition":"A buffer solution used for cell lysis (breaking open the cell walls)"},
+        {"short":"SDS Lysis Buffer", "aliases": "sodium dodecyl sulfate", "definition":"A buffer solution used for cell lysis (breaking open the cell walls)", "outlink": "http://cshprotocols.cshlp.org/content/2018/8/pdb.rec104711.full?rss=1"},
     
-        {"short":"Western Blotting", "definition":"A way to identify a specific protein within a cell. Lysis, gel electrophoresis, and then blotting on paper. On paper, antibodies are used to detect a specific proteins"},
+        {"short":"Western Blotting", "definition":"A way to identify a specific protein within a cell. Lysis, gel electrophoresis, and then blotting on paper. On paper, antibodies are used to detect a specific proteins", "outlink": "https://www.creative-diagnostics.com/Sample-Gel-Preparation.htm"},
     
         {"short":"protein purification", "definition":"There are many proteins in a cell. Purification is needed to get only the product proteins."},
     
@@ -122,7 +124,7 @@ let terms =
     
         {"short":"recombinant", "definition":"DNA from multiple sources, or the resulting protein (e.g. jellyfish in bacterial cell)"},
     
-        {"short":"expression vector", "definition":"A plasmid with an inducible promoter, a kind of template designed around expressing a custom DNA insert."},
+        {"short":"expression vector", "definition":"A plasmid with an inducible promoter, a kind of template designed around expressing a custom DNA insert.", "img": "https://i.ytimg.com/vi/bTGFsILjZAQ/maxresdefault.jpg"},
     
         {"short":"insert", "definition":"The custom, artificial DNA sequence to be expressed in a plasmid"},
     
